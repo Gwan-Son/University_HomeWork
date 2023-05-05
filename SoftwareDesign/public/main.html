@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    <script src="login.js"></script>
+    <link href="http://localhost:52273/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="main">
+        <div>
+            <h1>수강신청</h1>
+            <table id="lists">
+                <thead>
+                    <tr>
+                        <th>과목코드</th><th>과목명</th><th>학점</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><th>CSE304</th><td>알고리즘</td><td>3</td></tr>
+                    <tr><th>CSE308</th><td>멀티미디어</td><td>3</td></tr>
+                    <tr><th>CSE310</th><td>소프트웨어설계및실습2</td><td>3</td></tr>
+                    <tr><th>CSE316</th><td>임베디드소프트웨어</td><td>3</td></tr>
+                    <tr><th>CSE317</th><td>사물인터넷</td><td>3</td></tr>
+                </tbody>
+            </table><br>
+            <div id="btn_group">
+                <h3>과목코드 :&nbsp;&nbsp;
+                <input type="text" name="inCode" placeholder="과목코드" oninput="handleOnInput2(this);" required>
+                <button id="add_btn" onclick="add();">추가</button>
+                <button id="delete_btn" onclick="deleteOne();">삭제</button></h3>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

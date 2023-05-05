@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="http://localhost:52273/main.css" rel="stylesheet" type="text/css">
+    <script>
+        function handleOnInput2(e){//과목코드에 영문자 + 숫자만 입력되게 만드는 함수
+            e.value = e.value.replace(/[^A-Za-z0-9]/ig,'')
+        }
+    </script>
+</head>
+<body>
+    <% if(isLogin){%>
+        <script>
+            Swal.fire('로그인 성공!','로그인에 성공하셨습니다.','success')
+        </script>
+    <%}%>
+    <% if(isAdd){%>
+        <script>
+            Swal.fire('수강신청 완료!','목록에 표시되지 않는다면 새로고침을 눌러주세요.','success')
+        </script>
+    <%}%>
+    <% if(isDelete){%>
+        <script>
+            Swal.fire('수강취소 완료!','아직도 목록에 표시가 된다면 새로고침을 눌러주세요.','success')
+        </script>
+    <%}%>
+    <% if(isFail){%>
+        <script>
+            Swal.fire('처리 실패!','존재하지 않는 강의입니다.ㅠㅠ','error')
+        </script>
+    <%}%>
+    <div class="main">
+        <div>
+            <h1>수강신청 가능한 강의</h1>
+            <h2>현재 로그인 되어있는 회원은 <%=id%> 님입니다.</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>과목코드</th><th>과목명</th><th>학점</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(let i =0;i<Credits.length;i++){%>
+                        <%let isExist = false;%>
+                        <%for(let j=0;j<inCredits.length;j++){%>
+                            <%if(Credits[i].code == inCredits[j].code){%>
+                                <%isExist=true;break;%>
+                            <%}%>
+                        <%}%>
+                        <%if(!isExist){%>
+                        <tr>
+                            <th><%=Credits[i].code%></th>
+                            <td><%=Credits[i].name%></td>
+                            <td><%=Credits[i].credit%></td>
+                        </tr>
+                        <%}%>
+                    <%}%>
+                </tbody>
+            </table><br>
+            <h1>수강신청한 강의</h1>
+            <%let sum=0%>
+            <!-- 수강신청 총점 계산식 -->
+            <%for(let i=0;i<inCredits.length;i++){sum+=inCredits[i].credit}%>
+            <%if(isNaN(sum)){sum=0}%>
+            <h2>수강신청한 학점 총점:<%=sum%></h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>과목코드</th><th>과목명</th><th>학점</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(let i =0;i<inCredits.length;i++){%>
+                        <tr>
+                            <th><%=inCredits[i].code%></th>
+                            <td><%=inCredits[i].name%></td>
+                            <td><%=inCredits[i].credit%></td>
+                        </tr>
+                        <%}%>
+                </tbody>
+            </table><br>
+            <div id="btn_group">
+                <form method="post">
+                    <h3>과목코드 :&nbsp;&nbsp;
+                    <input type="hidden" id="id" name="id" value=<%=id%>>
+                    <input type="text" name="inCode" placeholder="과목코드" oninput="handleOnInput2(this);" required>
+                    <input type="submit" value="추가" id="add_btn" formaction="/process/add">
+                    <input type="submit" value="삭제" id="delete_btn" formaction="/process/delete">
+                    <input type="button" value="새로고침" id="reload_btn" onclick="window.location.reload();"></h3>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

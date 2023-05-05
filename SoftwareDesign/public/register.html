@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="login.js"></script>
+    <link href="http://localhost:52273/main.css" rel="stylesheet" type="text/css">
+    <title>회원가입</title>
+</head>
+<body onload="document.f1.id.focus();">
+    <div class="sub">
+        <div class="container2">
+            <h1 class="logo">회원가입</h1>
+            <form name="f1" method="post" action="/process/addUser" onsubmit="return chkregister();">
+                <h4>ID</h4>
+                <input class="account" id="id" name="id" placeholder="ID" oninput="handleOnInput(this)" type="text" required><p></p>
+                <h4>Password</h4>
+                <input class="account" id="pw" name="pw" placeholder="Password" type="password" required><p></p>
+                <input class="account" type="submit" id="submit_btn" value="확인"><p></p>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

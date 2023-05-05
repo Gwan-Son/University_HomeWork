@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="http://localhost:52273/main.css" rel="stylesheet" type="text/css">
+</head>
+<script type="text/javascript">
+    let query = window.location.search;
+    let urlParams = new URLSearchParams(query);
+    let reason = urlParams.get('reason').toString();
+    let text_ = urlParams.get('text_').toString();
+    let image = urlParams.get('img').toString();
+    let next = urlParams.get('next').toString();
+    function alert_(){
+        Swal.fire(reason,text_,image)
+        .then(function(){
+            if(next == "close"){
+                window.close();
+            }
+            else{
+                window.location.href = "/" + next;
+            }
+        })
+    }
+</script>
+<body onload="alert_();">
+</body>
+</html>

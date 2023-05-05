@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="login.js"></script>
+    <link href="http://localhost:52273/main.css" rel="stylesheet" type="text/css">
+    <title>로그인</title>
+</head>
+<body onload="document.f1.id.focus();">
+    <div class="main">
+        <div class="container">
+            <h1 class="logo">로그인</h1>
+            <form name="f1" id="form1" action="/process/login" method="post" onsubmit="return login();">
+                <h4>ID</h4>
+                <input class="account" id="id" name="id" placeholder="ID" oninput="handleOnInput(this)" type="text" required><p></p>
+                <h4>Password</h4>
+                <input class="account" id="pw" name="pw" placeholder="Password" type="password" required><p></p>
+                <input class="account" id="submit_btn" type="submit" value="로그인"><p></p>
+                <input class="account" id="register_btn" type="button" value="가입링크" onclick="register();"><p></p>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
